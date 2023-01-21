@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content%}
+    
+    <div class="text-center p-3 bg-secondary w-100">
+        <p>
+            {% if request.user.is_authenticated %}
+                <h1 class="text-white  font-weight-large">Hello {{request.user.username}}, list of todos</h1>
+            {%else%}
+                <p class="text-white  font-size-large"> Hello anonymous user</p>
+            {%endif%}
+        </p>
+
+    </div>
+    <div class="col-4 offset-4">
+            {% for todo in todo_list %}
+        <div class="card mt-3 mb-2 p-3">
+            <div class="header">
+                <h4><a href="/{{todo.id}}">{{todo.taskname}}</a>  </h4>
+            </div>
+
+        <div class="card-body">
+                <p>it's due {{todo.due_date}}</p>
+
+            </div>
+            
+        </div>
+            {% endfor %}
+    </div>
+{%endblock %}
